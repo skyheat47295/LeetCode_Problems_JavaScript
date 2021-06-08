@@ -46,7 +46,7 @@ s consists of English letters, digits, symbols and spaces.
  * @return {number}
  */
  var lengthOfLongestSubstring = function(s) {
-    if(s.length === 0 || s === null) return 0
+  if(s.length === 0 || s === null) return 0
   const map ={}, len = s.length
   let l=0, r=0,max=0
   for(;r<len; r++){
