@@ -53,5 +53,24 @@ s consists of English letters (lower-case and upper-case), ',' and '.'.
  * @return {string}
  */
  var convert = function(s, numRows) {
-    
+    if (s.length < numRows || numRows === 1) return s;
+    const zigZag = Array(numRows).fill().map(() => Array()) // create a blank array of numRows columns
+    let currentRow = 0
+    let zig = true; // zig -> down !zig (zag) up
+    let final = '';
+    for (let sChar = 0; sChar < s.length; sChar++) {
+        zigZag[currentRow].push(s[sChar]);
+        if (zig) {
+            currentRow ++;
+        } else {
+            currentRow --;
+        }
+        if (currentRow === numRows -1 || currentRow === 0) zig = !zig;
+    }
+    zigZag.forEach(char => final += char.join(''));
+    return final;
 };
+
+my_s = "AB"
+console.log(convert(my_s, 1))
+console.log('Done');
