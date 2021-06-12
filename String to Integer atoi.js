@@ -109,7 +109,7 @@ s consists of English letters (lower-case and upper-case), digits (0-9), ' ', '+
     for (let idx = 0; idx < s.length; idx++) {
         if (s.charAt(idx) === '-' && idx === 0 && !isNaN(+s.charAt(idx + 1))) positiveNumber = false;
             else if (s.charAt(idx) === '+' && idx == 0 && !isNaN(+s.charAt(idx + 1))) continue;
-            else if (isNaN(+s.charAt(idx))) break;
+            else if (isNaN(+s.charAt(idx)) || s.charAt(idx) === ' ') break;
             else {
                 result *= 10;
                 result += +s.charAt(idx);
@@ -122,6 +122,6 @@ s consists of English letters (lower-case and upper-case), digits (0-9), ' ', '+
     return result
 };
 
-my_s = "-91283472332"
+my_s = "4193 with words"
 console.log(myAtoi(my_s))
 console.log('Done');
