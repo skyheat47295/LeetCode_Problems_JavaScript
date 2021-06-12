@@ -105,11 +105,10 @@ s consists of English letters (lower-case and upper-case), digits (0-9), ' ', '+
  var myAtoi = function(s) {
     let positiveNumber = true;
     let result = 0;
+    s = s.trim();
     for (let idx = 0; idx < s.length; idx++) {
-        if (s.charAt(idx) === ' ') continue;
-            else if (s.charAt(idx) === '-' && !isNaN(+s.charAt(idx + 1))) positiveNumber = false;
-            else if (s.charAt(idx) === '+' && isNaN(+s.charAt(idx + 1))) break;
-            else if (s.charAt(idx) === '+' && !isNaN(+s.charAt(idx + 1))) continue;
+        if (s.charAt(idx) === '-' && idx === 0 && !isNaN(+s.charAt(idx + 1))) positiveNumber = false;
+            else if (s.charAt(idx) === '+' && idx == 0 && !isNaN(+s.charAt(idx + 1))) continue;
             else if (isNaN(+s.charAt(idx))) break;
             else {
                 result *= 10;
@@ -123,6 +122,6 @@ s consists of English letters (lower-case and upper-case), digits (0-9), ' ', '+
     return result
 };
 
-my_s = "00000-42a1234"
+my_s = "-91283472332"
 console.log(myAtoi(my_s))
 console.log('Done');
