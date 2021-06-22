@@ -64,9 +64,23 @@ Constraints:
  * @return {string}
  */
  var intToRoman = function(num) {
-    
+    if (num < 1 || num > 3999) return '';
+    let romanNumeral = "";
+    let index = 0;
+    let multiplier = 0;
+    const numbers = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
+    const numerals = ['M', 'CM', 'D', 'CD', 'C', 'XC', 'L', 'XL', 'X', 'IX', 'VIII', 'VII', 'VI', 'V', 'IV', 'III', 'II', 'I'];
+    while (index < numbers.length ) {
+        multiplier = Math.floor(num / numbers[index]);
+        if (multiplier > 0) {
+            romanNumeral += numerals[index].repeat(multiplier);
+            num -= (multiplier * numbers[index]);
+        };
+        index++;
+    }
+    return romanNumeral;
 };
 
-const myNum = [1,2,1]
-console.log(maxArea(myNum))
+const myNum = 1994;
+console.log(intToRoman(myNum))
 console.log('Done');
