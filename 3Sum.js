@@ -41,26 +41,23 @@ Constraints:
  */
  var threeSum = function(nums) {
     if (nums.length < 0 || nums.length >3000) return [];
+    nums.sort();
     const triplets = [];
-    let whichIsLower = 0;
-
+    
     for (let i = 0; i < nums.length -2; i++) {
-        let begin = i + 1, end = nums.length -1, sum = 0;
-        while ( begin < end) {
-            sum = nums[i] + nums[begin] + nums[end];
-            if (sum === 0) {
-                triplets.push([nums[i], nums[begin], nums[end]]);
-                while (nums[begin] === nums[begin + 1]) begin++;
-                while (nums[end] === nums[end - 1]) end--;
-            }
-            whichIsLower = Math.min(nums[begin],nums[end]);
-            if (sum < 0 && nums.indexOf(whichIsLower) === begin) {
-                begin++;
-            } else end--;
-            /*if (sum > 0 && nums.indexOf(whichIsLower) === begin) {
-                end--
-            } else begin++; try just one for now. */
+        let j = i+1, k = nums.length-1, sum = 0;
+        while ( j < k) {
+            sum = nums[i] + nums[j] + nums[k];
+            if (sum === 0 ) {
+                triplets.push([nums[i], nums[j], nums[k]]);
+                while (nums[j] === nums[j + 1]) j++;
+                while (nums[k] === nums[k - 1]) k--;
+                j++;
+                k--;
+            } else if (sum < 0) j++;
+            else k--;
         }
+        while(nums[i+1] === nums[i]) i++;
     }
     return triplets;
 };
