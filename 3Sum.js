@@ -40,8 +40,8 @@ Constraints:
  * @return {number[][]}
  */
  var threeSum = function(nums) {
-    if (nums.length < 0 || nums.length >3000) return [];
-    nums.sort();
+    if (nums.length < 2 || nums.length >3000) return [];
+    nums.sort((a, b) => a - b);
     const triplets = [];
     
     for (let i = 0; i < nums.length -2; i++) {
@@ -62,6 +62,6 @@ Constraints:
     return triplets;
 };
 
-const myNums = [-1,0,1,2,-1,-4];
+const myNums = [0,1];
 console.log(threeSum(myNums))
 console.log('Done');
