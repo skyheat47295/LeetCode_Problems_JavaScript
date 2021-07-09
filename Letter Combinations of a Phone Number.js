@@ -55,18 +55,21 @@ digits[i] is a digit in the range ['2', '9'].
     '9': ['w', 'x', 'y', 'z'],
     };
 
-    let letters = ''
     let letterCombos = [];
     let digitArray = digits.split('');
     if (digitArray.length > 1) {
-        for (index = 0; index < digitArray.length; index++) {
-        letters += (phoneMap[digitArray[index]][0]);
+        let letters = '';
+        for (index1 = 0; index1 < phoneMap[digitArray.slice(-2,-1)].length -1; index1++) {
+            letters += (phoneMap[digitArray.slice(-2,-1)][index1]);
+            for (index2 = 0; index2 < phoneMap[digitArray.slice(-1)].length; index2++) {
+                letters += (phoneMap[digitArray.slice(-1)][index2]);
+            };
+            letterCombos.push(letters + phoneMap[digitArray.slice(-1)][index1]);
         };
-        letterCombos.push(letters);
     return letterCombos;
     } else {
         return phoneMap[digits];
-      }
+    }
 };
 
 const mydigits = "2569";
