@@ -56,15 +56,16 @@ digits[i] is a digit in the range ['2', '9'].
     };
 
     let letterCombos = [];
-    let digitCombo = [];
-    if(digits.length > 1) {
-        for (let index1 = 0; index1 < digits.length - 1; index1++) {
-            let index2 = phoneMap[digits.slice(-1)].length -1;
-            phoneMap[digits.slice(-1)].forEach(function(element, index1) {
-                letterCombos.push(phoneMap[digits[index1]] + element);
-                index2 --;
-            });
-            digits = digits.slice(0,-1);
+    let digitArray = digits.split('');
+    if (digitArray.length > 1) {
+        for (let index1 = 0; index1 < digitArray.length -1; index1++) {
+            phoneMap[digitArray[index1]].forEach(function(element1) {
+                letters = [];
+                phoneMap[digitArray].forEach(function(element2){
+                    letters += (element1 + element2);
+                    });
+                letterCombos.push(letters);
+                });
             };
     return letterCombos;
     } else {
@@ -72,6 +73,7 @@ digits[i] is a digit in the range ['2', '9'].
       }
 };
 
-const mydigits = "23";
-console.log(letterCombinations(mydigits))
+const mydigits = "2569";
+console.log('answer');
+console.log(letterCombinations(mydigits));
 console.log('Done');
