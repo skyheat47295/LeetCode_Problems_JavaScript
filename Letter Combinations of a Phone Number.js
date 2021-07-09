@@ -56,20 +56,17 @@ digits[i] is a digit in the range ['2', '9'].
     };
 
     let letterCombos = [];
-    
+    let digitCombo = [];
     if(digits.length > 1) {
         for (let index1 = 0; index1 < digits.length - 1; index1++) {
             let index2 = phoneMap[digits.slice(-1)].length -1;
-            let digitCombo = [];
-            phoneMap[digits.slice(index1, index1 + 1)].forEach(element => {
-                let index2 = phoneMap[digits.slice(-1)].length -1;
-                digitCombo += element + phoneMap[digits.slice(-1)][index2];
+            phoneMap[digits.slice(-1)].forEach(function(element, index1) {
+                letterCombos.push(phoneMap[digits[index1]] + element);
                 index2 --;
             });
+            digits = digits.slice(0,-1);
             };
-            letterCombos.push(digitCombo);
-        return letterCombos;
-        };
+    return letterCombos;
     } else {
         return phoneMap[digits];
       }
