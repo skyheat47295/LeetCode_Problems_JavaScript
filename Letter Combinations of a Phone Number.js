@@ -55,18 +55,14 @@ digits[i] is a digit in the range ['2', '9'].
     '9': ['w', 'x', 'y', 'z'],
     };
 
+    let letters = ''
     let letterCombos = [];
     let digitArray = digits.split('');
     if (digitArray.length > 1) {
-        for (let index1 = 0; index1 < digitArray.length -1; index1++) {
-            phoneMap[digitArray[index1]].forEach(function(element1) {
-                letters = [];
-                phoneMap[digitArray].forEach(function(element2){
-                    letters += (element1 + element2);
-                    });
-                letterCombos.push(letters);
-                });
-            };
+        for (index = 0; index < digitArray.length; index++) {
+        letters += (phoneMap[digitArray[index]][0]);
+        };
+        letterCombos.push(letters);
     return letterCombos;
     } else {
         return phoneMap[digits];
