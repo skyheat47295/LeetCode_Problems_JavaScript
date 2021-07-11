@@ -68,7 +68,6 @@ digits[i] is a digit in the range ['2', '9'].
     };
     return letterCombos;
 };
-
 const mydigits = "2569";
 console.log('answer');
 console.log(letterCombinations(mydigits));
